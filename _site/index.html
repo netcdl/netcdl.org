@@ -5,12 +5,12 @@
     <meta charset='utf-8'>
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
     <meta name="viewport" content="width=device-width,maximum-scale=2">
-    <meta name="description" content="The Network Certification Description Language : NETCDL is a language designed for certifying the behavior of networks.
+    <meta name="description" content="NETCDL : The Network Certification Description Language 
 ">
 
-    <link rel="stylesheet" type="text/css" media="screen" href="/assets/css/style.css?v=b2676cbaeae898a3e5ebc23212b200c3ae5bc190">
+    <link rel="stylesheet" type="text/css" media="screen" href="/assets/css/style.css?v=d578b919a8defea57d533d28f1f235aeced4938d">
 
-    <title>The Network Certification Description Language</title>
+    <title>NETCDL</title>
   </head>
 
   <body>
@@ -18,10 +18,10 @@
     <!-- HEADER -->
     <div id="header_wrap" class="outer">
         <header class="inner">
-          <a id="forkme_banner" href="http://github.com/netcdl/netcdl.org">View on GitHub</a>
+          <a id="forkme_banner" href="http://github.com/netcdl/netcdl">View on GitHub</a>
 
-          <h1 id="project_title">The Network Certification Description Language</h1>
-          <h2 id="project_tagline">NETCDL is a language designed for certifying the behavior of networks.
+          <h1 id="project_title">NETCDL</h1>
+          <h2 id="project_tagline">The Network Certification Description Language 
 </h2>
 
           
@@ -31,7 +31,77 @@
     <!-- MAIN CONTENT -->
     <div id="main_content_wrap" class="outer">
       <section id="main_content" class="inner">
-        
+        <p><strong>NETCDL is a DSL for making assertions about networks.</strong></p>
+
+<p><a href="/NETCDL_thesis.pdf">Read the Paper</a></p>
+
+<p><a href="/NETCDL_deck.pdf">View the Deck</a></p>
+
+<p><a href="/grammar">Grammar Reference</a></p>
+
+<p><a href="/certifier">Certifier Implementation Guidelines</a></p>
+
+<hr />
+
+<p><strong>Example NETCDL Document</strong></p>
+<div class="highlighter-rouge"><pre class="highlight"><code># Certification Subject: Home Network
+# Author: Cody Hanson &lt;chanson@uwalumni.com&gt;
+# Date: 10/1/2016
+# Version: 1.0
+
+define host myRouter as 192.168.1.1
+define network myNetwork as 192.168.1.0/24
+define network DMZ as 10.0.0.0/24
+define host ftpSite as speedtest.tele2.net
+
+link speed should be 1000Mb/s
+link duplex should be full
+
+iperf download from ent.local should be at most 30Kbps
+iperf upload to ent.local should be at least 30Kbps
+
+access vlan should be 500
+
+dhcp server should be myRouter
+dhcp dns should be myRouter
+dhcp network should be 192.168.1.0/24
+dhcp gateway should be 192.168.1.1
+
+myRouter should be reachable by ping
+
+domain name google.com should resolve using server 8.8.8.8
+domain name ent.local should resolve to 192.168.1.144 using server myRouter
+
+myRouter should be reachable on TCP port 22
+myRouter should not be reachable on TCP port 23
+myRouter should not be reachable on UDP port 100
+
+#File fetch assertions, default port used for protocol, if omitted
+http server at myRouter should not serve "/path/to/file" on port 8080
+http server at google.com should serve "/index.html"
+http server at google.com should not serve "/index.html" on port 12345
+
+tftp server at ent.local should serve "RouterUpdate.img"
+tftp server at ent.local should not serve "RouterUpdate.img.missing"
+
+ftp server at ftpSite should serve "1KB.zip"
+ftp server at ftpSite should not serve "missingfile"
+
+traceroute to 184.99.1.89 should traverse [192.168.1.1 10.0.0.1 184.99.0.12]
+traceroute to 10.0.0.1 should traverse [192.168.1.1]
+
+packets from network DMZ should not be seen
+packets from host 10.250.0.1 should not be seen
+packets with type 0x18 should not be seen
+packets with TCP destination port 544 should be seen
+packets with TCP source port 1000 should not be seen
+packets with UDP source port 1010 should be seen
+packets with UDP destination port 4000 should not be seen
+
+frames with ethertype 0x18 should not be seen
+</code></pre>
+</div>
+
 
       </section>
     </div>
@@ -40,7 +110,7 @@
     <div id="footer_wrap" class="outer">
       <footer class="inner">
         
-        <p class="copyright">The Network Certification Description Language maintained by <a href="http://github.com/netcdl">netcdl</a></p>
+        <p class="copyright">NETCDL maintained by <a href="http://github.com/netcdl">netcdl</a></p>
         
         <p>Published with <a href="https://pages.github.com">GitHub Pages</a></p>
       </footer>

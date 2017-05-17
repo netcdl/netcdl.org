@@ -13,14 +13,14 @@
 # you will see them accessed via {{ site.title }}, {{ site.email }}, and so on.
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
-title: The Network Certification Description Language 
+title: NETCDL
 email: chanson@uwalumni.com
 description: > # this means to ignore newlines until "baseurl:"
-    NETCDL is a language designed for certifying the behavior of networks.
+    The Network Certification Description Language 
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "http://netcdl.org" # the base hostname & protocol for your site, e.g. http://example.com
-twitter_username: jekyllrb
-github_username:  netcdl
+twitter_username: netcdl
+github_username:  Netcdl
 
 # Build settings
 markdown: kramdown
