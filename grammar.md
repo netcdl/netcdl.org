@@ -2,6 +2,9 @@
 layout: home
 ---
 
+Grammar Reference - EBNF
+========================
+
 ```
 #Document Structure
 <document> ::= <line> | <line> <document>
