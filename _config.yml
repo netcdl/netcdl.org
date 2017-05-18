@@ -14,6 +14,7 @@
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
 title: NETCDL
+google_analytics: "UA-99354781-1"
 email: chanson@uwalumni.com
 description: > # this means to ignore newlines until "baseurl:"
     The Network Certification Description Language 
