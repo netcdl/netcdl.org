@@ -5,7 +5,7 @@
 layout: home
 ---
 
-**NETCDL is a DSL for making assertions about networks.**
+**NETCDL is a [DSL](https://martinfowler.com/books/dsl.html) for making assertions about networks.**
 
 
 [Read the Paper](/NETCDL_thesis.pdf)
